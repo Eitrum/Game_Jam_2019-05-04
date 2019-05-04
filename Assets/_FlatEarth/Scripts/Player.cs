@@ -1,18 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Rewired;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int playerId = 0;
+
+    private Rewired.Player player;
+    private Vector3 moveVector;
+
+    void Awake()
     {
-        
+        player = ReInput.players.GetPlayer(playerId);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        GetInput();
+    }
+
+    private void GetInput()
+    {
+        moveVector.x = player.GetAxis("Move Horizontal");
+        moveVector.y = player.GetAxis("Move Vertical");
+        Debug.Log(moveVector);
     }
 }

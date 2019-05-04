@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
     public static event System.Action OnRestart;
 
     void Awake() {
-        parent = transform;
+        parent = transform.Find("Parent");
     }
 
     public static void Restart() {

@@ -22,7 +22,7 @@ public class GameSettings : ScriptableObject {
     #region Variables
 
     [Header("Prefabs")]
-    [SerializeField] private Player playerPrefab = null;
+    [SerializeField] private Player[] playerPrefabs = null;
     [SerializeField] private float spawnDistance = 3f;
 
     [Header("Round Settings")]
@@ -33,7 +33,7 @@ public class GameSettings : ScriptableObject {
 
     #region Public Properties
 
-    public static Player PlayerPrefab(int index) => Instance.playerPrefab;
+    public static Player PlayerPrefab(int index) => Instance.playerPrefabs[index%Instance.playerPrefabs.Length];
     public static float SpawnDistance => Instance.spawnDistance;
     public static float RoundDuration => Instance.roundDuration;
     public static float Scale(float roundTimer) => Instance.platformScaleCurve.Evaluate(1f - roundTimer / RoundDuration);

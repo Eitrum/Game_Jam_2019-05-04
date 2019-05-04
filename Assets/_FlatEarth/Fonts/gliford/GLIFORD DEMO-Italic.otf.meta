@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 7bbafc59d2c32437ea02c0cf7d6c9323
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: GLIFORD DEMO
+  fontNames:
+  - GLIFORD DEMO
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2a0e9107fab9c46fa824a7c38cbcca6d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

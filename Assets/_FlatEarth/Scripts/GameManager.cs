@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour {
         }
 
         players.Clear();
-        var controllers = Rewired.ReInput.players.Players.Where(x => x.isPlaying).ToArray();
+        var controllers = Rewired.ReInput.players.Players.Where(x => x.controllers.Controllers.Any(y=>y.isConnected)).ToArray();
         int count = controllers.Length;
         Vector3 spawn = Vector3.up;
         var forward = Parent.forward * GameSettings.SpawnDistance;

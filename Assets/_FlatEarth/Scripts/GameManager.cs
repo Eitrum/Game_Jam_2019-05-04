@@ -38,6 +38,15 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
+#if UNITY_EDITOR
+
+    [UnityEditor.MenuItem("Flat Earth/Restart", validate = true)]
+    public static bool CanRestart() {
+        return Application.isPlaying;
+    }
+
+    [UnityEditor.MenuItem("Flat Earth/Restart")]
+#endif
     public static void Restart() {
         Parent.DestroyAllChildren();
         roundTimer = GameSettings.RoundDuration;
@@ -46,7 +55,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public static void SpawnPlayers() {
-        int count = Rewired.ReInput.players.allPlayerCount;
+        int count = Rewired.ReInput.players.playerCount;
         Vector3 spawn = Vector3.up;
         var forward = Parent.forward * GameSettings.SpawnDistance;
         float steps = 360f / count;

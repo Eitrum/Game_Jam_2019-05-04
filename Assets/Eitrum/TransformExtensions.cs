@@ -52,7 +52,7 @@ namespace Eitrum.Engine.Extensions
 
 		public static void Destroy (this Transform transform, float delay)
 		{
-				MonoBehaviour.Destroy (transform, delay);
+				MonoBehaviour.Destroy (transform.gameObject, delay);
 		}
 
 		public static void DestroyAllChildren (this Transform transform)

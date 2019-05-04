@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: -7034035592771353879, guid: f489f77b60d560b49820ef15ce494567,
     type: 3}
+  spawnDistance: 5
   roundDuration: 180

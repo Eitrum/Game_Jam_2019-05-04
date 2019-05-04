@@ -19,6 +19,8 @@ public sealed class Player : MonoBehaviour {
 
     private int bounceCount = 0;
 
+    public float defaultScale = 2f;
+
     private Coroutine attack;
 
 #pragma warning disable
@@ -80,7 +82,7 @@ public sealed class Player : MonoBehaviour {
     }
 
     private void Animate(float t) {
-        var scale = 2f + Eitrum.Mathematics.EiEase.Cubic.In(1f - t) * 0.4f;
+        var scale = defaultScale + Eitrum.Mathematics.EiEase.Cubic.In(1f - t) * defaultScale*0.2f;
         this.transform.GetChild(0).localScale = new Vector3(scale, scale, scale);
     }
 

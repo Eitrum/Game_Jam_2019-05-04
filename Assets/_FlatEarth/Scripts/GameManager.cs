@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Eitrum.Engine.Extensions;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameManager : MonoBehaviour {
 
@@ -113,7 +114,8 @@ public class GameManager : MonoBehaviour {
         }
 
         players.Clear();
-        int count = Rewired.ReInput.players.playerCount;
+        var controllers = Rewired.ReInput.players.Players.Where(x => x.isPlaying).ToArray();
+        int count = controllers.Length;
         Vector3 spawn = Vector3.up;
         var forward = Parent.forward * GameSettings.SpawnDistance;
         float steps = 360f / count;
@@ -122,7 +124,7 @@ public class GameManager : MonoBehaviour {
             var position = spawn + Quaternion.Euler(0, steps * i, 0) * forward;
             var go = Instantiate(GameSettings.PlayerPrefab(i), position, Quaternion.identity, Parent);
             var player = go.GetComponent<Player>();
-            player.playerId = Rewired.ReInput.players.Players[i].id;
+            player.playerId = controllers[i].id;
             player.rb.isKinematic = true;
             players.Add(player);
 

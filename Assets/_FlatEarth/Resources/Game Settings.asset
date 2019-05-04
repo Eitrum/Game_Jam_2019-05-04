@@ -30,7 +30,7 @@ MonoBehaviour:
   - {fileID: 851623463524324570, guid: d17853f4a5476194fab4c2d8f5860bb5, type: 3}
   - {fileID: 851623463524324570, guid: d17853f4a5476194fab4c2d8f5860bb5, type: 3}
   spawnDistance: 5
-  minimumPlayers: 4
+  minimumPlayers: 0
   roundDuration: 90
   platformScaleCurve:
     serializedVersion: 2

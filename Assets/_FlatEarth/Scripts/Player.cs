@@ -5,10 +5,16 @@ public sealed class Player : MonoBehaviour
 {
     public int playerId = 0;
     public string playerName;
-    public bool canMove;
+    [HideInInspector] public bool canMove;
+    [SerializeField] private GameObject namePlatePrefab;
+    private Transform namePlateTransform;
+    private Transform cameraTransform;
+
+    private Vector3 namePlateOffset = new Vector3(-2.5f, 1, 0);
 
     private Rewired.Player player;
     private Vector3 moveVector;
+
 
     private int bounceCount = 0;
 
@@ -20,6 +26,14 @@ public sealed class Player : MonoBehaviour
     void Start()
     {
         player = ReInput.players.GetPlayer(playerId);
+        namePlateTransform = Instantiate(namePlatePrefab).transform;
+        namePlateTransform.GetComponent<NamePlate>().SetName(playerName);
+        cameraTransform = Camera.main.transform;
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(namePlateTransform.gameObject);
     }
 
     void FixedUpdate()
@@ -34,6 +48,12 @@ public sealed class Player : MonoBehaviour
             if (transform.localPosition.y < -5f)
                 GameManager.KillPlayer(this);
         }
+    }
+
+    private void Update()
+    {
+        namePlateTransform.position = transform.position + namePlateOffset;
+        namePlateTransform.LookAt(namePlateTransform.position - cameraTransform.position, cameraTransform.up);
     }
 
     private void OnCollisionEnter(Collision collision)

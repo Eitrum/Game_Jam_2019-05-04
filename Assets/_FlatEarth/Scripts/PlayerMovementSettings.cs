@@ -16,7 +16,7 @@ public sealed class PlayerMovementSettings : ScriptableObject {
 
     #endregion
 
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] public float moveSpeed = 10f;
 
     public static float MoveSpeed => Instance.moveSpeed;
 

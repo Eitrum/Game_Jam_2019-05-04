@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
+using Eitrum.Engine.Extensions;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
 
-    [SerializeField] private Player playerPrefab;
+    private static Transform parent;
+    public static Transform Parent => parent;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private static Player PlayerPrefab => GameSettings.PlayerPrefab;
+
+    public static event System.Action OnRestart;
+
+    void Awake() {
+        parent = transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public static void Restart() {
+        Parent.DestroyAllChildren();
+
+        OnRestart?.Invoke();
     }
 }

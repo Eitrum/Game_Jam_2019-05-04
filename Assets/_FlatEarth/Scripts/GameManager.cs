@@ -2,6 +2,7 @@
 using Eitrum.Engine.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 using Eitrum;
 
 public class GameManager : MonoBehaviour {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour {
     private static Coroutine endGameRestartRoutine;
 
     public Transform cameraContainer;
+    public GameObject logo;
 
     #endregion
 
@@ -35,6 +37,12 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         parent = transform.Find("Parent");
         platform = transform.Find("Platform");
+    }
+
+    IEnumerator Start(){
+        logo.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        logo.SetActive(false);
         Restart();
     }
 

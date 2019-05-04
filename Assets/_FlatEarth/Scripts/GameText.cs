@@ -19,12 +19,12 @@ public class GameText : MonoBehaviour
             Show();
         };
         GameManager.OnRoundStart += () => 
-        { 
+        {
             SetText("GO!");
             Eitrum.Engine.Core.Timer.Once(0.5f, Hide);
         };
-        GameManager.OnCountDown += (int count) => { SetText(count.ToString()); logo.SetActive(false); };
-        GameManager.OnRestart += () => { SetText(3.ToString()); Show(); };
+        GameManager.OnCountDown += (int count) => { SetText(count.ToString()); };
+        GameManager.OnRestart += () => { SetText(3.ToString()); Show(); logo.SetActive(false); };
     }
 
     private void SetText(string text)

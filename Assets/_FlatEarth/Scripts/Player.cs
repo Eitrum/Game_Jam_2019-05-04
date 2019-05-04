@@ -8,6 +8,7 @@ public sealed class Player : MonoBehaviour {
     [SerializeField] private GameObject namePlatePrefab;
     private Transform namePlateTransform;
     private Transform cameraTransform;
+    [SerializeField] private ParticleSystem impactParticle;
 
     private Vector3 namePlateOffset = new Vector3(-2.5f, 1, 0);
 
@@ -80,6 +81,7 @@ public sealed class Player : MonoBehaviour {
             playerController.SetVibration(0, Mathf.Max(0.2f, toAdd.magnitude / (PlayerMovementSettings.MaxBounceForce / 4f)), 0.2f);
 
             bounceCount++;
+            impactParticle.Play();
         }
     }
 }

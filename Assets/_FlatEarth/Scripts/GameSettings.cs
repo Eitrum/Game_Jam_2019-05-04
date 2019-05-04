@@ -27,6 +27,7 @@ public class GameSettings : ScriptableObject {
 
     [Header("Round Settings")]
     [SerializeField] private float roundDuration = 180f;
+    [SerializeField] private AnimationCurve platformScaleCurve = AnimationCurve.Linear(0, 1f, 1f, 0f);
 
     #endregion
 
@@ -35,6 +36,7 @@ public class GameSettings : ScriptableObject {
     public static Player PlayerPrefab(int index) => Instance.playerPrefab;
     public static float SpawnDistance => Instance.spawnDistance;
     public static float RoundDuration => Instance.roundDuration;
+    public static float Scale(float roundTimer) => Instance.platformScaleCurve.Evaluate(1f - roundTimer / RoundDuration);
 
     #endregion
 }

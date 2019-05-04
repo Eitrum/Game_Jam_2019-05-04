@@ -53,7 +53,7 @@ public sealed class Player : MonoBehaviour {
         namePlateTransform.LookAt(namePlateTransform.position - cameraTransform.position, cameraTransform.up);
 
 
-        if(Input.GetKeyDown(KeyCode.JoystickButton0))
+        if(Rewired.ReInput.players.GetPlayer(playerId).GetButtonDown("Identify"))
         Eitrum.Engine.Core.Timer.Animate(0.1f, Animate, ref attack);
     }
 

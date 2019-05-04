@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
 
     private static Coroutine endGameRestartRoutine;
 
+    [SerializeField] private GameText gameText;
+
     #endregion
 
     #region Properties

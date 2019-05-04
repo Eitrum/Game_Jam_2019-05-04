@@ -2,6 +2,7 @@
 using Eitrum.Engine.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using Eitrum;
 
 public class GameManager : MonoBehaviour {
 
@@ -107,6 +108,13 @@ public class GameManager : MonoBehaviour {
 
     #region players
 
+    public static Player GetFocusToOtherPlayer(Player myPlayer) {
+        var otherPlayers = players.Where(x => x != myPlayer && x.transform.localPosition.ToVector3_XZ().magnitude < 10f).ToArray();
+        if (otherPlayers.Length == 0)
+            return null;
+        return otherPlayers[Random.Range(0, otherPlayers.Length)];
+    }
+
     public static void SpawnPlayers() {
         var oldPlayers = Parent.GetComponentsInChildren<Player>();
         for (int i = 0; i < oldPlayers.Length; i++) {
@@ -115,21 +123,19 @@ public class GameManager : MonoBehaviour {
 
         players.Clear();
         var controllers = Rewired.ReInput.players.Players.Where(x => x.controllers.Controllers.Any(y=>y.isConnected)).ToArray();
-        int count = controllers.Length;
+        int playerCount = Mathf.Max(controllers.Length, GameSettings.MinimumPlayers);
         Vector3 spawn = Vector3.up;
         var forward = Parent.forward * GameSettings.SpawnDistance;
-        float steps = 360f / count;
+        float steps = 360f / playerCount;
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < playerCount; i++) {
             var position = spawn + Quaternion.Euler(0, steps * i, 0) * forward;
             var go = Instantiate(GameSettings.PlayerPrefab(i), position, Quaternion.identity, Parent);
             var player = go.GetComponent<Player>();
-            player.playerId = controllers[i].id;
+            player.playerId = (i <controllers.Length ?controllers[i].id:-1);
             player.rb.isKinematic = true;
             players.Add(player);
-
         }
-
     }
 
     public static void KillPlayer(Player player) {

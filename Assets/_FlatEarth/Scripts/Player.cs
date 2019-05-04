@@ -15,6 +15,7 @@ public sealed class Player : MonoBehaviour {
     private Rewired.Player player;
     private Vector3 moveVector;
 
+    private Player aiFocus;
 
     private int bounceCount = 0;
 
@@ -26,7 +27,8 @@ public sealed class Player : MonoBehaviour {
 #pragma warning enable
 
     void Start() {
-        player = ReInput.players.GetPlayer(playerId);
+        if(playerId >=0)
+            player = ReInput.players.GetPlayer(playerId);
         namePlateTransform = Instantiate(namePlatePrefab).transform;
         namePlateTransform.GetComponent<NamePlate>().SetName(playerName);
         cameraTransform = Camera.main.transform;
@@ -39,8 +41,15 @@ public sealed class Player : MonoBehaviour {
 
     void FixedUpdate() {
         if (canMove) {
-            moveVector.x = player.GetAxis("Move Horizontal");
-            moveVector.z = player.GetAxis("Move Vertical");
+            if (playerId == -1) {
+                var direction = CalculateAI();
+                moveVector.x = direction.x;
+                moveVector.z = direction.z;
+            }
+            else {
+                moveVector.x = player.GetAxis("Move Horizontal");
+                moveVector.z = player.GetAxis("Move Vertical");
+            }
 
             rb.AddForce(moveVector.normalized * PlayerMovementSettings.MoveSpeed * Time.fixedDeltaTime, ForceMode.Force);
 
@@ -49,17 +58,29 @@ public sealed class Player : MonoBehaviour {
         }
     }
 
+    private Vector3 CalculateAI() {
+        aiFocus = GameManager.GetFocusToOtherPlayer(this);
+
+        var direction = -this.transform.localPosition;
+
+        if (aiFocus) {
+            direction = aiFocus.transform.localPosition - this.transform.localPosition;
+        }
+
+        return direction;
+    }
+
     private void Update() {
         namePlateTransform.position = transform.position + namePlateOffset;
         namePlateTransform.LookAt(namePlateTransform.position - cameraTransform.position, cameraTransform.up);
 
 
-        if(Rewired.ReInput.players.GetPlayer(playerId).GetButtonDown("Identify"))
-        Eitrum.Engine.Core.Timer.Animate(0.1f, Animate, ref attack);
+        if (playerId >= 0 && Rewired.ReInput.players.GetPlayer(playerId).GetButtonDown("Identify"))
+            Eitrum.Engine.Core.Timer.Animate(0.1f, Animate, ref attack);
     }
 
     private void Animate(float t) {
-        var scale = 2f + Eitrum.Mathematics.EiEase.Cubic.In(1f-t) * 0.4f;
+        var scale = 2f + Eitrum.Mathematics.EiEase.Cubic.In(1f - t) * 0.4f;
         this.transform.GetChild(0).localScale = new Vector3(scale, scale, scale);
     }
 
@@ -77,9 +98,10 @@ public sealed class Player : MonoBehaviour {
             rb.AddForce(toAdd,
                 ForceMode.Impulse);
 
-            var playerController = Rewired.ReInput.players.GetPlayer(playerId);
-            playerController.SetVibration(0, Mathf.Max(0.2f, toAdd.magnitude / (PlayerMovementSettings.MaxBounceForce / 4f)), 0.2f);
-
+            if (playerId >= 0) {
+                var playerController = Rewired.ReInput.players.GetPlayer(playerId);
+                playerController.SetVibration(0, Mathf.Max(0.2f, toAdd.magnitude / (PlayerMovementSettings.MaxBounceForce / 4f)), 0.2f);
+            }
             bounceCount++;
             impactParticle.Play();
         }

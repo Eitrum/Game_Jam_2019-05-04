@@ -8,6 +8,8 @@ public sealed class Player : MonoBehaviour
     private Rewired.Player player;
     private Vector3 moveVector;
 
+    private int bounceCount = 0;
+
 #pragma warning disable
     [Header("Components")]
     [SerializeField] private Rigidbody rb;
@@ -37,8 +39,9 @@ public sealed class Player : MonoBehaviour
                 * Mathf.Clamp(velocity.magnitude, 
                     PlayerMovementSettings.MinBounceForce, 
                     PlayerMovementSettings.MaxBounceForce);
-            rb.AddForce(force, 
+            rb.AddForce(force * Mathf.Pow(PlayerMovementSettings.BounceMultiplier, bounceCount),
                 ForceMode.Impulse);
+            bounceCount++;
         }
     }
 }

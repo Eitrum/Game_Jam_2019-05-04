@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Player Settings
   m_EditorClassIdentifier: 
   moveSpeed: 500
-  minBounceForce: 5
-  maxBounceForce: 10
+  minBounceForce: 10
+  maxBounceForce: 20
+  bounceMultiplier: 1.05

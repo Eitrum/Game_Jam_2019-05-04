@@ -19,9 +19,10 @@ public sealed class PlayerMovementSettings : ScriptableObject {
     [SerializeField] public float moveSpeed = 10f;
     [SerializeField] public float minBounceForce = 5f;
     [SerializeField] public float maxBounceForce = 20f;
+    [SerializeField] public float bounceMultiplier = 1.1f;
 
     public static float MoveSpeed => Instance.moveSpeed;
     public static float MinBounceForce => Instance.minBounceForce;
     public static float MaxBounceForce => Instance.maxBounceForce;
-
+    public static float BounceMultiplier => Instance.bounceMultiplier;
 }

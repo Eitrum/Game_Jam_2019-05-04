@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6518633311755160016}
   - component: {fileID: 5936110618651542680}
   - component: {fileID: 5192644975850345615}
-  - component: {fileID: 425498750647000138}
   m_Layer: 0
   m_Name: Geo
   m_TagString: Untagged
@@ -78,19 +77,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &425498750647000138
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5635289387628970702}
-  m_Material: {fileID: 13400000, guid: 6a5c200fd97234373942fbbb0700be85, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7424092421732244645
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +88,7 @@ GameObject:
   - component: {fileID: 4199789787270077971}
   - component: {fileID: 8494250716979103724}
   - component: {fileID: -7034035592771353879}
+  - component: {fileID: 1949569780974975375}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -152,5 +139,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4d92cfe81862f46b38bcecb6cc96d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
   rb: {fileID: 8494250716979103724}
   movementSettings: {fileID: 11400000, guid: cbb2f7838ede849a7843493a6ce9bc72, type: 2}
+--- !u!135 &1949569780974975375
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7424092421732244645}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}

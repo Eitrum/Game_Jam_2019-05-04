@@ -61,6 +61,7 @@ public sealed class Player : MonoBehaviour {
     }
 
     private Vector3 CalculateAI() {
+        if(!aiFocus)
         aiFocus = GameManager.GetFocusToOtherPlayer(this);
 
         var direction = -this.transform.localPosition;

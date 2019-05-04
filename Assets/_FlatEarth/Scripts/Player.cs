@@ -1,12 +1,18 @@
 ﻿using Rewired;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public sealed class Player : MonoBehaviour
 {
-    public int playerId = 0;
+    private readonly int playerId = 0;
 
     private Rewired.Player player;
     private Vector3 moveVector;
+
+    [Header("Components")]
+    [SerializeField] private Rigidbody rb;
+
+    [Header("Settings")]
+    [SerializeField] private PlayerMovementSettings movementSettings;
 
     void Awake()
     {
@@ -15,13 +21,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        GetInput();
-    }
-
-    private void GetInput()
-    {
         moveVector.x = player.GetAxis("Move Horizontal");
-        moveVector.y = player.GetAxis("Move Vertical");
-        Debug.Log(moveVector);
+        moveVector.z = player.GetAxis("Move Vertical");
+
+        rb.AddForce(moveVector.normalized * movementSettings.moveSpeed * Time.deltaTime, ForceMode.Force);
     }
 }

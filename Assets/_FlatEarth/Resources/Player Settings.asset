@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f8c9d8e48dd4c845bbe1d5e7eaed742, type: 3}
-  m_Name: Game Settings
+  m_Script: {fileID: 11500000, guid: d42e4e5e1341d4bf8a94b5f280c1a913, type: 3}
+  m_Name: Player Settings
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: -7034035592771353879, guid: f489f77b60d560b49820ef15ce494567,
-    type: 3}
-  roundDuration: 180
+  moveSpeed: 10

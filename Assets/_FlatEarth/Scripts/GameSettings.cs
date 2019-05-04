@@ -21,13 +21,18 @@ public class GameSettings : ScriptableObject {
 
     #region Variables
 
+    [Header("Prefabs")]
     [SerializeField] private Player playerPrefab = null;
+
+    [Header("Round Settings")]
+    [SerializeField] private float roundDuration = 180f;
 
     #endregion
 
     #region Public Properties
 
     public static Player PlayerPrefab => Instance.playerPrefab;
+    public static float RoundDuration => Instance.roundDuration;
 
     #endregion
 }

@@ -18,12 +18,14 @@ public class GameManager : MonoBehaviour {
 
     private static Coroutine endGameRestartRoutine;
 
+    public Transform cameraContainer;
+
     #endregion
 
     #region Properties
 
     public static Transform Parent => parent;
-    
+
     #endregion
 
     #region Unity Methods
@@ -40,11 +42,21 @@ public class GameManager : MonoBehaviour {
         if (roundTimer > 0f) {
             roundTimer -= Time.deltaTime;
             var scale = GameSettings.Scale(roundTimer);
-            platform.localScale = new Vector3(scale, 1f, scale) ;
+            platform.localScale = new Vector3(scale, 1f, scale);
             if (roundTimer <= 0f) {
                 EndRound(null);
             }
         }
+
+        Vector3 center = Vector3.zero;
+        for (int i = 0; i < players.Count; i++) {
+            center += players[i].transform.localPosition;
+        }
+        if (players.Count > 0)
+            center /= players.Count;
+        center.y = 0f;
+
+        cameraContainer.localPosition =Vector3.Lerp(cameraContainer.localPosition, center, Time.deltaTime *3f);
     }
 
     #endregion
@@ -67,17 +79,16 @@ public class GameManager : MonoBehaviour {
         SpawnPlayers();
         OnRestart?.Invoke();
         int counter = 3;
-        Eitrum.Engine.Core.Timer.Repeat(1f, counter, () => 
-        {
+        Eitrum.Engine.Core.Timer.Repeat(1f, counter, () => {
             counter -= 1;
-            OnCountDown.Invoke(counter); 
+            OnCountDown.Invoke(counter);
             if (counter == 0) {
                 OnRoundStart?.Invoke();
                 for (int iPlayer = 0, nPlayer = players.Count; iPlayer < nPlayer; ++iPlayer) {
                     players[iPlayer].canMove = true;
                     players[iPlayer].rb.isKinematic = false;
                 }
-            } 
+            }
         });
     }
 
@@ -86,7 +97,7 @@ public class GameManager : MonoBehaviour {
     #region End Round
 
     private static void EndRound(Player winner) {
-        Debug.Log($"Player {(winner?.playerId ?? -1)} won" );
+        Debug.Log($"Player {(winner?.playerId ?? -1)} won");
         OnRoundEnd?.Invoke(winner);
         Eitrum.Engine.Core.Timer.Once(3f, Restart, ref endGameRestartRoutine);
     }
@@ -106,7 +117,7 @@ public class GameManager : MonoBehaviour {
         Vector3 spawn = Vector3.up;
         var forward = Parent.forward * GameSettings.SpawnDistance;
         float steps = 360f / count;
-        
+
         for (int i = 0; i < count; i++) {
             var position = spawn + Quaternion.Euler(0, steps * i, 0) * forward;
             var go = Instantiate(GameSettings.PlayerPrefab(i), position, Quaternion.identity, Parent);

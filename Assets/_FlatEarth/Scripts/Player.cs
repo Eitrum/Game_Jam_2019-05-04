@@ -77,7 +77,7 @@ public sealed class Player : MonoBehaviour {
                 ForceMode.Impulse);
 
             var playerController = Rewired.ReInput.players.GetPlayer(playerId);
-            playerController.SetVibration(0, Mathf.Max(0.2f, toAdd.magnitude / (PlayerMovementSettings.MaxBounceForce / 2f)), 0.1f);
+            playerController.SetVibration(0, Mathf.Max(0.2f, toAdd.magnitude / (PlayerMovementSettings.MaxBounceForce / 4f)), 0.2f);
 
             bounceCount++;
         }

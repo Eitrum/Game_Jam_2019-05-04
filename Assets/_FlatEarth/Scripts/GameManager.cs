@@ -14,10 +14,9 @@ public class GameManager : MonoBehaviour {
     public static event System.Action OnRoundStart;
     public static event System.Action<Player> OnRoundEnd;
     public static event System.Action OnRestart;
+    public static event System.Action<int> OnCountDown;
 
     private static Coroutine endGameRestartRoutine;
-
-    [SerializeField] private GameText gameText;
 
     #endregion
 
@@ -67,7 +66,15 @@ public class GameManager : MonoBehaviour {
         roundTimer = GameSettings.RoundDuration;
         SpawnPlayers();
         OnRestart?.Invoke();
-        OnRoundStart?.Invoke();
+        int counter = 3;
+        Eitrum.Engine.Core.Timer.Repeat(1f, counter, () => 
+        {
+            counter -= 1;
+            OnCountDown.Invoke(counter); 
+            if (counter == 0) {
+                OnRoundStart?.Invoke();
+            } 
+        });
     }
 
     #endregion

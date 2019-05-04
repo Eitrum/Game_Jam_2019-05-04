@@ -1,8 +1,7 @@
 ﻿using Rewired;
 using UnityEngine;
 
-public sealed class Player : MonoBehaviour
-{
+public sealed class Player : MonoBehaviour {
     public int playerId = 0;
     public string playerName;
     [HideInInspector] public bool canMove;
@@ -23,23 +22,20 @@ public sealed class Player : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 #pragma warning enable
 
-    void Start()
-    {
+    void Start() {
         player = ReInput.players.GetPlayer(playerId);
         namePlateTransform = Instantiate(namePlatePrefab).transform;
         namePlateTransform.GetComponent<NamePlate>().SetName(playerName);
         cameraTransform = Camera.main.transform;
     }
 
-    private void OnDestroy()
-    {
-        Destroy(namePlateTransform.gameObject);
+    private void OnDestroy() {
+        if (namePlateTransform)
+            Destroy(namePlateTransform.gameObject);
     }
 
-    void FixedUpdate()
-    {
-        if (canMove)
-        {
+    void FixedUpdate() {
+        if (canMove) {
             moveVector.x = player.GetAxis("Move Horizontal");
             moveVector.z = player.GetAxis("Move Vertical");
 
@@ -50,22 +46,19 @@ public sealed class Player : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
+    private void Update() {
         namePlateTransform.position = transform.position + namePlateOffset;
         namePlateTransform.LookAt(namePlateTransform.position - cameraTransform.position, cameraTransform.up);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.rigidbody)
-        {
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.rigidbody) {
             Vector3 velocity = collision.rigidbody.velocity;
-            Vector3 direction = (rb.position 
+            Vector3 direction = (rb.position
                 - collision.rigidbody.position).normalized;
-            Vector3 force = direction 
-                * Mathf.Clamp(velocity.magnitude, 
-                    PlayerMovementSettings.MinBounceForce, 
+            Vector3 force = direction
+                * Mathf.Clamp(velocity.magnitude,
+                    PlayerMovementSettings.MinBounceForce,
                     PlayerMovementSettings.MaxBounceForce);
             rb.AddForce(force * Mathf.Pow(PlayerMovementSettings.BounceMultiplier, bounceCount),
                 ForceMode.Impulse);

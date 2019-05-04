@@ -20,6 +20,7 @@ public sealed class Player : MonoBehaviour {
 #pragma warning disable
     [Header("Components")]
     public Rigidbody rb;
+    public ParticleSystem impact;
 #pragma warning enable
 
     void Start() {
@@ -63,6 +64,7 @@ public sealed class Player : MonoBehaviour {
             rb.AddForce(force * Mathf.Pow(PlayerMovementSettings.BounceMultiplier, bounceCount),
                 ForceMode.Impulse);
             bounceCount++;
+            impact.Play();
         }
     }
 }

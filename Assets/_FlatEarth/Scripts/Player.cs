@@ -17,10 +17,11 @@ public sealed class Player : MonoBehaviour {
 
     private int bounceCount = 0;
 
+    private Coroutine attack;
+
 #pragma warning disable
     [Header("Components")]
     public Rigidbody rb;
-    public ParticleSystem impact;
 #pragma warning enable
 
     void Start() {
@@ -50,6 +51,15 @@ public sealed class Player : MonoBehaviour {
     private void Update() {
         namePlateTransform.position = transform.position + namePlateOffset;
         namePlateTransform.LookAt(namePlateTransform.position - cameraTransform.position, cameraTransform.up);
+
+
+        if(Input.GetKeyDown(KeyCode.JoystickButton0))
+        Eitrum.Engine.Core.Timer.Animate(0.1f, Animate, ref attack);
+    }
+
+    private void Animate(float t) {
+        var scale = 2f + Eitrum.Mathematics.EiEase.Cubic.In(1f-t) * 0.4f;
+        this.transform.GetChild(0).localScale = new Vector3(scale, scale, scale);
     }
 
     private void OnCollisionEnter(Collision collision) {
@@ -67,10 +77,9 @@ public sealed class Player : MonoBehaviour {
                 ForceMode.Impulse);
 
             var playerController = Rewired.ReInput.players.GetPlayer(playerId);
-            playerController.SetVibration(0, Mathf.Max(0.2f, toAdd.magnitude / (PlayerMovementSettings.MaxBounceForce/2f)), 0.1f);
+            playerController.SetVibration(0, Mathf.Max(0.2f, toAdd.magnitude / (PlayerMovementSettings.MaxBounceForce / 2f)), 0.1f);
 
             bounceCount++;
-            impact.Play();
         }
     }
 }

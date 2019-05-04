@@ -13,7 +13,7 @@ public sealed class Player : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 #pragma warning enable
 
-    void Awake()
+    void Start()
     {
         player = ReInput.players.GetPlayer(playerId);
     }

@@ -104,6 +104,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Saturn
       objectReference: {fileID: 0}
+    - target: {fileID: -7034035592771353879, guid: f489f77b60d560b49820ef15ce494567,
+        type: 3}
+      propertyPath: playerName
+      value: Saturn
+      objectReference: {fileID: 0}
     - target: {fileID: 4199789787270077971, guid: f489f77b60d560b49820ef15ce494567,
         type: 3}
       propertyPath: m_LocalPosition.x

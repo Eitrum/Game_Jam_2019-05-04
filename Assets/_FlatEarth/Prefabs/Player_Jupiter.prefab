@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5611160795235698035
+--- !u!1001 &2835678861491621877
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 7424092421732244645, guid: f489f77b60d560b49820ef15ce494567,
         type: 3}
       propertyPath: m_Name
-      value: Player_Mars
+      value: Player_Jupiter
       objectReference: {fileID: 0}
     - target: {fileID: 4199789787270077971, guid: f489f77b60d560b49820ef15ce494567,
         type: 3}
@@ -70,12 +70,12 @@ PrefabInstance:
     - target: {fileID: -7034035592771353879, guid: f489f77b60d560b49820ef15ce494567,
         type: 3}
       propertyPath: playerName
-      value: Mars
+      value: Jupiter
       objectReference: {fileID: 0}
     - target: {fileID: 5192644975850345615, guid: f489f77b60d560b49820ef15ce494567,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e7041bf9e73a044e5b47dad901cce500, type: 2}
+      objectReference: {fileID: 2100000, guid: dace186a9b28b45c4ba42d856a4e29da, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f489f77b60d560b49820ef15ce494567, type: 3}

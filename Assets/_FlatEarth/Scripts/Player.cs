@@ -19,7 +19,7 @@ public sealed class Player : MonoBehaviour {
 
 #pragma warning disable
     [Header("Components")]
-    [SerializeField] private Rigidbody rb;
+    public Rigidbody rb;
 #pragma warning enable
 
     void Start() {

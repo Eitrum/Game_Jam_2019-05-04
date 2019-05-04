@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour {
                 OnRoundStart?.Invoke();
                 for (int iPlayer = 0, nPlayer = players.Count; iPlayer < nPlayer; ++iPlayer) {
                     players[iPlayer].canMove = true;
+                    players[iPlayer].rb.isKinematic = false;
                 }
             } 
         });
@@ -111,6 +112,7 @@ public class GameManager : MonoBehaviour {
             var go = Instantiate(GameSettings.PlayerPrefab(i), position, Quaternion.identity, Parent);
             var player = go.GetComponent<Player>();
             player.playerId = Rewired.ReInput.players.Players[i].id;
+            player.rb.isKinematic = true;
             players.Add(player);
 
         }

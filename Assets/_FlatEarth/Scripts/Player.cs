@@ -20,6 +20,7 @@ public sealed class Player : MonoBehaviour {
 #pragma warning disable
     [Header("Components")]
     public Rigidbody rb;
+    public ParticleSystem impact;
 #pragma warning enable
 
     void Start() {
@@ -69,6 +70,7 @@ public sealed class Player : MonoBehaviour {
             playerController.SetVibration(0, Mathf.Max(0.2f, toAdd.magnitude / (PlayerMovementSettings.MaxBounceForce/2f)), 0.1f);
 
             bounceCount++;
+            impact.Play();
         }
     }
 }

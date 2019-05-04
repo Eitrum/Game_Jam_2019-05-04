@@ -26,6 +26,9 @@ public sealed class Player : MonoBehaviour
         moveVector.z = player.GetAxis("Move Vertical");
 
         rb.AddForce(moveVector.normalized * PlayerMovementSettings.MoveSpeed * Time.fixedDeltaTime, ForceMode.Force);
+
+        if (transform.localPosition.y < -5f)
+            GameManager.KillPlayer(this);
     }
 
     private void OnCollisionEnter(Collision collision)

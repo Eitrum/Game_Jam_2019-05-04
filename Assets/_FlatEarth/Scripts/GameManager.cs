@@ -51,11 +51,12 @@ public class GameManager : MonoBehaviour {
         }
 
         Vector3 center = Vector3.zero;
-        for (int i = 0; i < players.Count; i++) {
-            center += players[i].transform.localPosition;
+        var tempPlayers = players.Where(x => x.playerId >= 0).ToArray();
+        for (int i = 0; i < tempPlayers.Length; i++) {
+            center += tempPlayers[i].transform.localPosition;
         }
-        if (players.Count > 0)
-            center /= players.Count;
+        if (tempPlayers.Length > 0)
+            center /= tempPlayers.Length;
         center.y = 0f;
 
         cameraContainer.localPosition =Vector3.Lerp(cameraContainer.localPosition, center, Time.deltaTime *3f);

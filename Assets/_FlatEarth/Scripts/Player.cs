@@ -52,8 +52,8 @@ public sealed class Player : MonoBehaviour {
                 moveVector.x = player.GetAxis("Move Horizontal");
                 moveVector.z = player.GetAxis("Move Vertical");
             }
+            rb.AddForce(moveVector.normalized * (PlayerMovementSettings.MoveSpeed * Time.fixedDeltaTime * rb.mass), ForceMode.Force);
 
-            rb.AddForce(moveVector.normalized * PlayerMovementSettings.MoveSpeed * Time.fixedDeltaTime, ForceMode.Force);
 
             if (transform.localPosition.y < -5f)
                 GameManager.KillPlayer(this);
@@ -66,7 +66,7 @@ public sealed class Player : MonoBehaviour {
         var direction = -this.transform.localPosition;
 
         if (aiFocus) {
-            direction = aiFocus.transform.localPosition - this.transform.localPosition;
+            direction = (aiFocus.transform.localPosition - this.transform.localPosition) / 2f;
         }
 
         return direction;
@@ -94,7 +94,8 @@ public sealed class Player : MonoBehaviour {
             Vector3 force = direction
                 * Mathf.Clamp(velocity.magnitude,
                     PlayerMovementSettings.MinBounceForce,
-                    PlayerMovementSettings.MaxBounceForce);
+                    PlayerMovementSettings.MaxBounceForce)
+                * rb.mass;
 
             var toAdd = force * Mathf.Pow(PlayerMovementSettings.BounceMultiplier, bounceCount);
             rb.AddForce(toAdd,
@@ -103,8 +104,12 @@ public sealed class Player : MonoBehaviour {
             if (playerId >= 0) {
                 var playerController = Rewired.ReInput.players.GetPlayer(playerId);
                 playerController.SetVibration(0, Mathf.Max(0.2f, toAdd.magnitude / (PlayerMovementSettings.MaxBounceForce / 4f)), 0.2f);
+
+                bounceCount++;
             }
-            bounceCount++;
+            else {
+                bounceCount += 3;
+            }
             impactParticle.Play();
         }
     }

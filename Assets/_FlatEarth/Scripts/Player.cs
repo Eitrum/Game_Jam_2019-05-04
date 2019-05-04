@@ -13,9 +13,6 @@ public sealed class Player : MonoBehaviour
 #pragma warning disable
     [Header("Components")]
     [SerializeField] private Rigidbody rb;
-
-    [Header("Settings")]
-    [SerializeField] private PlayerMovementSettings movementSettings;
 #pragma warning enable
 
     void Awake()
@@ -30,7 +27,7 @@ public sealed class Player : MonoBehaviour
 
         if (canMove)
         {
-            rb.AddForce(moveVector.normalized * movementSettings.moveSpeed * Time.deltaTime, ForceMode.Force);
+            rb.AddForce(moveVector.normalized * PlayerMovementSettings.MoveSpeed * Time.deltaTime, ForceMode.Force);
         }
     }
 
@@ -38,10 +35,13 @@ public sealed class Player : MonoBehaviour
     {
         if (collision.rigidbody)
         {
-
             Vector3 velocity = collision.rigidbody.velocity;
-            Vector3 direction = (rb.position - collision.rigidbody.position).normalized;
-            Vector3 force = direction * Mathf.Clamp(velocity.magnitude, 2.5f, 5f);
+            Vector3 direction = (rb.position 
+                - collision.rigidbody.position).normalized;
+            Vector3 force = direction 
+                * Mathf.Clamp(velocity.magnitude, 
+                    PlayerMovementSettings.MinBounceForce, 
+                    PlayerMovementSettings.MaxBounceForce);
             rb.AddForce(force, 
                 ForceMode.Impulse);
         }

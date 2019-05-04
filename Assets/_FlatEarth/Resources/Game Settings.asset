@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8c9d8e48dd4c845bbe1d5e7eaed742, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: -7034035592771353879, guid: f489f77b60d560b49820ef15ce494567,
+  playerPrefab: {fileID: 1952878336470890193, guid: f39e82e95b40942b1ad4339ef9e0691f,
     type: 3}
   spawnDistance: 5
   roundDuration: 180

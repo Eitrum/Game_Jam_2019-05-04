@@ -125,7 +125,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &-7034035592771353879
 MonoBehaviour:
@@ -139,9 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4d92cfe81862f46b38bcecb6cc96d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 1
+  playerId: 0
   rb: {fileID: 8494250716979103724}
-  movementSettings: {fileID: 11400000, guid: cbb2f7838ede849a7843493a6ce9bc72, type: 2}
 --- !u!135 &1949569780974975375
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -149,7 +148,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7424092421732244645}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 6a5c200fd97234373942fbbb0700be85, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

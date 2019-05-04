@@ -13,7 +13,7 @@ public class GameText : MonoBehaviour
     private void Start()
     {
         GameManager.OnRoundEnd += (Player winner) => { 
-            SetText($"Player {(winner?.playerId ?? -1)} won");
+            SetText($"{winner.playerName} won");
             Show();
         };
         GameManager.OnRoundStart += () => 
@@ -22,6 +22,7 @@ public class GameText : MonoBehaviour
             Eitrum.Engine.Core.Timer.Once(0.5f, Hide);
         };
         GameManager.OnCountDown += (int count) => { SetText(count.ToString()); };
+        GameManager.OnRestart += () => { SetText(3.ToString()); };
     }
 
     private void SetText(string text)

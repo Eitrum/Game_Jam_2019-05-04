@@ -4,6 +4,8 @@ using UnityEngine;
 public sealed class Player : MonoBehaviour
 {
     public int playerId = 0;
+    public string playerName;
+    public bool canMove;
 
     private Rewired.Player player;
     private Vector3 moveVector;
@@ -22,13 +24,16 @@ public sealed class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        moveVector.x = player.GetAxis("Move Horizontal");
-        moveVector.z = player.GetAxis("Move Vertical");
+        if (canMove)
+        {
+            moveVector.x = player.GetAxis("Move Horizontal");
+            moveVector.z = player.GetAxis("Move Vertical");
 
-        rb.AddForce(moveVector.normalized * PlayerMovementSettings.MoveSpeed * Time.fixedDeltaTime, ForceMode.Force);
+            rb.AddForce(moveVector.normalized * PlayerMovementSettings.MoveSpeed * Time.fixedDeltaTime, ForceMode.Force);
 
-        if (transform.localPosition.y < -5f)
-            GameManager.KillPlayer(this);
+            if (transform.localPosition.y < -5f)
+                GameManager.KillPlayer(this);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

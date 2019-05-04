@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour {
             OnCountDown.Invoke(counter); 
             if (counter == 0) {
                 OnRoundStart?.Invoke();
+                for (int iPlayer = 0, nPlayer = players.Count; iPlayer < nPlayer; ++iPlayer) {
+                    players[iPlayer].canMove = true;
+                }
             } 
         });
     }

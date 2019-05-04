@@ -3,12 +3,10 @@ using UnityEngine;
 
 public sealed class Player : MonoBehaviour
 {
-    private readonly int playerId = 0;
+    public int playerId = 0;
 
     private Rewired.Player player;
     private Vector3 moveVector;
-
-    public bool canMove;
 
 #pragma warning disable
     [Header("Components")]
@@ -20,15 +18,12 @@ public sealed class Player : MonoBehaviour
         player = ReInput.players.GetPlayer(playerId);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         moveVector.x = player.GetAxis("Move Horizontal");
         moveVector.z = player.GetAxis("Move Vertical");
 
-        if (canMove)
-        {
-            rb.AddForce(moveVector.normalized * PlayerMovementSettings.MoveSpeed * Time.deltaTime, ForceMode.Force);
-        }
+        rb.AddForce(moveVector.normalized * PlayerMovementSettings.MoveSpeed * Time.fixedDeltaTime, ForceMode.Force);
     }
 
     private void OnCollisionEnter(Collision collision)

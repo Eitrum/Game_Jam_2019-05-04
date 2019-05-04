@@ -22,7 +22,7 @@ public class GameText : MonoBehaviour
             Eitrum.Engine.Core.Timer.Once(0.5f, Hide);
         };
         GameManager.OnCountDown += (int count) => { SetText(count.ToString()); };
-        GameManager.OnRestart += () => { SetText(3.ToString()); };
+        GameManager.OnRestart += () => { SetText(3.ToString()); Show(); };
     }
 
     private void SetText(string text)

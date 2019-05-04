@@ -60,8 +60,14 @@ public sealed class Player : MonoBehaviour {
                 * Mathf.Clamp(velocity.magnitude,
                     PlayerMovementSettings.MinBounceForce,
                     PlayerMovementSettings.MaxBounceForce);
-            rb.AddForce(force * Mathf.Pow(PlayerMovementSettings.BounceMultiplier, bounceCount),
+
+            var toAdd = force * Mathf.Pow(PlayerMovementSettings.BounceMultiplier, bounceCount);
+            rb.AddForce(toAdd,
                 ForceMode.Impulse);
+
+            var playerController = Rewired.ReInput.players.GetPlayer(playerId);
+            playerController.SetVibration(0, Mathf.Max(0.2f, toAdd.magnitude / PlayerMovementSettings.MaxBounceForce), 0.1f);
+
             bounceCount++;
         }
     }

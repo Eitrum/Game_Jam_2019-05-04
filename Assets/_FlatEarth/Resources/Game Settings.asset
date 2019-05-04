@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 4123132337307389212, guid: 854c37015a98a4edd93dd781673bf8ec, type: 3}
   - {fileID: 6456456433188594971, guid: 14ed954f8025d4880ad6763e457b42a5, type: 3}
   spawnDistance: 5
-  roundDuration: 180
+  roundDuration: 90
   platformScaleCurve:
     serializedVersion: 2
     m_Curve:

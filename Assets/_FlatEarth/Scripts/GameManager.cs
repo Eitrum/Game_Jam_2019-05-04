@@ -50,11 +50,11 @@ public class GameManager : MonoBehaviour {
         Vector3 spawn = Vector3.up;
         var forward = Parent.forward * GameSettings.SpawnDistance;
         float steps = 360f / count;
-
+        
         for (int i = 0; i < count; i++) {
             var position = spawn + Quaternion.Euler(0, steps * i, 0) * forward;
             var go = Instantiate(GameSettings.PlayerPrefab(i), position, Quaternion.identity, Parent);
-            go.GetComponent<Player>().playerId = i;
+            go.GetComponent<Player>().playerId = Rewired.ReInput.players.AllPlayers[i].id;
         }
 
     }

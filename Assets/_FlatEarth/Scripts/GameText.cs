@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class GameText : MonoBehaviour
 {
+#pragma warning disable
     [SerializeField] private Text frontText;
     [SerializeField] private Text backText;
+#pragma warning enable
 
     private void Start()
     {

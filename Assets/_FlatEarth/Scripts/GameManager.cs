@@ -17,15 +17,14 @@ public class GameManager : MonoBehaviour {
     #region Properties
 
     public static Transform Parent => parent;
-
-    private static Player PlayerPrefab => GameSettings.PlayerPrefab;
-
+    
     #endregion
 
     #region Unity Methods
 
     void Awake() {
         parent = transform.Find("Parent");
+        Restart();
     }
 
     void Update() {
@@ -42,7 +41,21 @@ public class GameManager : MonoBehaviour {
     public static void Restart() {
         Parent.DestroyAllChildren();
         roundTimer = GameSettings.RoundDuration;
-
+        SpawnPlayers();
         OnRestart?.Invoke();
+    }
+
+    public static void SpawnPlayers() {
+        int count = Rewired.ReInput.players.allPlayerCount;
+        Vector3 spawn = Vector3.up;
+        var forward = Parent.forward * GameSettings.SpawnDistance;
+        float steps = 360f / count;
+
+        for (int i = 0; i < count; i++) {
+            var position = spawn + Quaternion.Euler(0, steps * i, 0) * forward;
+            var go = Instantiate(GameSettings.PlayerPrefab(i), position, Quaternion.identity, Parent);
+            go.GetComponent<Player>().playerId = i;
+        }
+
     }
 }

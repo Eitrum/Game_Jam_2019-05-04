@@ -13,7 +13,7 @@ public class GameText : MonoBehaviour
     private void Start()
     {
         GameManager.OnRoundEnd += (Player winner) => { 
-            SetText($"{winner.playerName} won");
+            SetText($"{winner?.playerName} won");
             Show();
         };
         GameManager.OnRoundStart += () => 

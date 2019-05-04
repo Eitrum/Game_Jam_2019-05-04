@@ -141,6 +141,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 0
   playerName: NO PLANET
+  canMove: 0
+  namePlatePrefab: {fileID: 4788177372233473606, guid: 83ae615f0da7a4befb0ae5cdc750a97d,
+    type: 3}
   rb: {fileID: 8494250716979103724}
 --- !u!135 &1949569780974975375
 SphereCollider:

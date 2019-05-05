@@ -77,6 +77,31 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6607419316114297193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087628463421151702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22fce9c9522794d23ae37a8ba8357f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 0}
+  moons: []
+  minMagnitude: 2
+  maxMagnitude: 2
+  moonCount: 2
+  moonMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  moonMaterial: {fileID: 2100000, guid: e7041bf9e73a044e5b47dad901cce500, type: 2}
+  minScale: 0.3
+  maxScale: 0.5
+  minDistance: 1.05
+  maxDistance: 1.3
+  minSpeed: 1
+  maxSpeed: 15
 --- !u!1 &5070882982781807097
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &630731623652351486
 Transform:
   m_ObjectHideFlags: 0
@@ -206,15 +231,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -7034035592771353879, guid: f489f77b60d560b49820ef15ce494567,
-        type: 3}
-      propertyPath: playerName
-      value: Mars
-      objectReference: {fileID: 0}
     - target: {fileID: 7424092421732244645, guid: f489f77b60d560b49820ef15ce494567,
         type: 3}
       propertyPath: m_Name
       value: Player_Mars
+      objectReference: {fileID: 0}
+    - target: {fileID: -7034035592771353879, guid: f489f77b60d560b49820ef15ce494567,
+        type: 3}
+      propertyPath: playerName
+      value: Mars
       objectReference: {fileID: 0}
     - target: {fileID: 4199789787270077971, guid: f489f77b60d560b49820ef15ce494567,
         type: 3}
@@ -278,6 +303,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e7041bf9e73a044e5b47dad901cce500, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f489f77b60d560b49820ef15ce494567, type: 3}
+--- !u!1 &3087628463421151702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7424092421732244645, guid: f489f77b60d560b49820ef15ce494567,
+    type: 3}
+  m_PrefabInstance: {fileID: 5611160795235698035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8617215180454271840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4199789787270077971, guid: f489f77b60d560b49820ef15ce494567,

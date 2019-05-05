@@ -41,4 +41,12 @@ public class GameSettings : ScriptableObject {
     public static int MinimumPlayers => Instance.minimumPlayers;
 
     #endregion
+
+    #region Config
+
+    public static void SetMinimumPlayers(int count) {
+        Instance.minimumPlayers = count;
+    }
+
+    #endregion
 }

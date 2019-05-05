@@ -47,6 +47,12 @@ public class GameManager : MonoBehaviour {
     }
 
     void Update() {
+        for (int i = 0; i < 10; i++) {
+            if (Input.GetKeyDown((KeyCode.Alpha0+i))) {
+                GameSettings.SetMinimumPlayers(i);
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
             Restart();
         if (roundTimer > 0f) {

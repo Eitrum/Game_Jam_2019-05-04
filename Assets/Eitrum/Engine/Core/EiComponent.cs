@@ -196,8 +196,8 @@ namespace Eitrum.Engine.Core {
         }
 
         protected void UnsubscribePreUpdate() {
-            if (preUpdateNode != null)
-                UpdateSystem.Instance.UnsubscribePreUpdate(preUpdateNode);
+            if (preUpdateNode != null && GameRunning)
+                UpdateSystem.Instance?.UnsubscribePreUpdate(preUpdateNode);
             preUpdateNode = null;
         }
 
@@ -212,7 +212,7 @@ namespace Eitrum.Engine.Core {
 
         protected void UnsubscribeUpdate() {
             if (updateNode != null && GameRunning)
-                UpdateSystem.Instance.UnsubscribeUpdate(updateNode);
+                UpdateSystem.Instance?.UnsubscribeUpdate(updateNode);
             updateNode = null;
         }
 
@@ -226,7 +226,7 @@ namespace Eitrum.Engine.Core {
         }
 
         protected void UnsubscribeThreadedUpdate() {
-            if (threadedUpdateNode != null)
+            if (threadedUpdateNode != null && GameRunning)
                 ThreadedUpdateSystem.Instance.Unsubscribe(threadedUpdateNode);
             threadedUpdateNode = null;
         }
@@ -241,7 +241,7 @@ namespace Eitrum.Engine.Core {
         }
 
         protected void UnsubscribeLateUpdate() {
-            if (lateUpdateNode != null)
+            if (lateUpdateNode != null && GameRunning)
                 UpdateSystem.Instance.UnsubscribeLateUpdate(lateUpdateNode);
             lateUpdateNode = null;
         }
@@ -256,7 +256,7 @@ namespace Eitrum.Engine.Core {
         }
 
         protected void UnsubscribeFixedUpdate() {
-            if (fixedUpdateNode != null)
+            if (fixedUpdateNode != null && GameRunning)
                 UpdateSystem.Instance.UnsubscribeFixedUpdate(fixedUpdateNode);
             fixedUpdateNode = null;
         }

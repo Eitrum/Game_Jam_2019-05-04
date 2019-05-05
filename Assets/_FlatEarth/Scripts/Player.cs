@@ -1,5 +1,6 @@
 ﻿using Rewired;
 using UnityEngine;
+using FMODUnity;
 
 public sealed class Player : MonoBehaviour {
     public int playerId = 0;
@@ -23,6 +24,22 @@ public sealed class Player : MonoBehaviour {
 
     private Coroutine attack;
 
+    private bool isRolling;
+    private bool isRollingPrev;
+
+
+    //FMOD
+
+    // Planet hit
+    public string planetHitEv = "event:/Soundtrack/Planets/planetHit";
+    public FMOD.Studio.EventInstance planetHit;
+
+    // Planet roll
+    public string planetRollEv = "event:/Soundtrack/Planets/planetRoll";
+    public FMOD.Studio.EventInstance planetRoll;
+
+    //FMOD
+
 #pragma warning disable
     [Header("Components")]
     public Rigidbody rb;
@@ -34,6 +51,8 @@ public sealed class Player : MonoBehaviour {
         namePlateTransform = Instantiate(namePlatePrefab).transform;
         namePlateTransform.GetComponent<NamePlate>().SetName(playerName);
         cameraTransform = Camera.main.transform;
+        planetHit = FMODUnity.RuntimeManager.CreateInstance(planetHitEv);
+        planetRoll = FMODUnity.RuntimeManager.CreateInstance(planetRollEv);
     }
 
     private void OnDestroy() {
@@ -80,6 +99,21 @@ public sealed class Player : MonoBehaviour {
 
         if (playerId >= 0 && Rewired.ReInput.players.GetPlayer(playerId).GetButtonDown("Identify"))
             Eitrum.Engine.Core.Timer.Animate(0.1f, Animate, ref attack);
+
+        isRolling = rb.velocity.magnitude > 0.1f;
+
+        if (isRolling != isRollingPrev)
+        {
+            isRollingPrev = isRolling;
+            if (isRolling)
+            {
+                planetRoll.start();
+            }
+            else
+            {
+                planetRoll.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            }
+        }
     }
 
     private void Animate(float t) {
@@ -89,6 +123,7 @@ public sealed class Player : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.rigidbody) {
+
             Vector3 velocity = collision.rigidbody.velocity;
             Vector3 direction = (rb.position
                 - collision.rigidbody.position).normalized;
@@ -101,6 +136,11 @@ public sealed class Player : MonoBehaviour {
             var toAdd = force * Mathf.Pow(PlayerMovementSettings.BounceMultiplier, bounceCount);
             rb.AddForce(toAdd,
                 ForceMode.Impulse);
+                
+            float normalized = Mathf.Clamp01((force.magnitude - PlayerMovementSettings.MinBounceForce) / (PlayerMovementSettings.MaxBounceForce - PlayerMovementSettings.MinBounceForce));
+            Debug.Log(normalized);
+            planetHit.setParameterByName("impactForce", normalized);
+            planetHit.start();
 
             if (playerId >= 0) {
                 var playerController = Rewired.ReInput.players.GetPlayer(playerId);

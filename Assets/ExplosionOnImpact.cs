@@ -9,5 +9,6 @@ public class ExplosionOnImpact : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         explosionParticle.Play();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/spaceStationHit");
     }
 }

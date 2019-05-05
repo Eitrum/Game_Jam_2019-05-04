@@ -75,7 +75,7 @@ namespace Eitrum.Engine.Threading
 
 			public ThreadContainer (int fpsLimit = 10000)
 			{
-				Instantiate (TimeSpan.TicksPerSecond / fpsLimit);
+				Instantiate (100000);
 			}
 
 			public void SetNode (EiLLNode<ThreadContainer> node)

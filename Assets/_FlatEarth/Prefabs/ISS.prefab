@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 0}
   rotation: {x: 0, y: -10, z: 0}
-  rotationSpace: 0
-  updateMode: 6
+  rotationSpace: 1
+  updateMode: 2
 --- !u!135 &7138620973191183580
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 7709686125681325085
-    second: Armature|Armature.001Action
+    second: RightArm
   - first:
       74: 9128885920207887336
     second: Armature|Armature.002Action
@@ -23,7 +23,7 @@ ModelImporter:
     second: Armature|ArmatureAction.002
   - first:
       74: 2264077025236624520
-    second: Armature.001|Armature.001Action
+    second: Head
   - first:
       74: 6906267723572508546
     second: Armature.002|Armature.001Action
@@ -35,7 +35,7 @@ ModelImporter:
     second: Armature.002|Armature.002Action.001
   - first:
       74: -3997514183246978980
-    second: Armature.002|ArmatureAction
+    second: RightFeet
   - first:
       74: 8368265636151829555
     second: Armature.002|ArmatureAction.001
@@ -53,7 +53,7 @@ ModelImporter:
     second: Armature.003|Armature.002Action.001
   - first:
       74: 7738622313493689335
-    second: Armature.003|ArmatureAction
+    second: LeftArm
   - first:
       74: -4892983548465906659
     second: Armature.003|ArmatureAction.001
@@ -71,14 +71,19 @@ ModelImporter:
     second: Armature.004|Armature.002Action.001
   - first:
       74: 7229134331825455570
-    second: Armature.004|ArmatureAction
+    second: LeftFeet
   - first:
       74: 8053289802780196075
     second: Armature.004|ArmatureAction.001
   - first:
       74: 1771407499508897215
     second: Armature.004|ArmatureAction.002
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 90ec51fd577dd2e419f0ffdfd072f68a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -107,10 +112,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Armature.001Action
+      name: RightArm
       takeName: Armature|Armature.001Action
       internalID: 7709686125681325085
-      firstFrame: 0
+      firstFrame: 10
       lastFrame: 183
       wrapMode: 0
       orientationOffsetY: 0
@@ -118,7 +123,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -281,10 +286,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature.001|Armature.001Action
+      name: Head
       takeName: Armature.001|Armature.001Action
       internalID: 2264077025236624520
-      firstFrame: 0
+      firstFrame: 10
       lastFrame: 183
       wrapMode: 0
       orientationOffsetY: 0
@@ -292,7 +297,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -397,10 +402,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature.002|ArmatureAction
+      name: RightFeet
       takeName: Armature.002|ArmatureAction
       internalID: -3997514183246978980
-      firstFrame: 0
+      firstFrame: 10
       lastFrame: 183
       wrapMode: 0
       orientationOffsetY: 0
@@ -408,7 +413,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -571,10 +576,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature.003|ArmatureAction
+      name: LeftArm
       takeName: Armature.003|ArmatureAction
       internalID: 7738622313493689335
-      firstFrame: 0
+      firstFrame: 10
       lastFrame: 183
       wrapMode: 0
       orientationOffsetY: 0
@@ -582,7 +587,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -745,10 +750,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature.004|ArmatureAction
+      name: LeftFeet
       takeName: Armature.004|ArmatureAction
       internalID: 7229134331825455570
-      firstFrame: 0
+      firstFrame: 10
       lastFrame: 183
       wrapMode: 0
       orientationOffsetY: 0
@@ -756,7 +761,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -857,7 +862,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

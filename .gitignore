@@ -36,9 +36,9 @@ sysinfo.txt
 *.unitypackage
 
 # FMOD
-/Assets/FMODStudioCache.asset
-/Assets/FMODStudioCache.asset.meta
-fmod.log
-fmod_editor.log
+*FMODStudioCache.asset
+*FMODStudioCache.asset.meta
+*fmod.log
+*fmod_editor.log
 
 Thumbs.db

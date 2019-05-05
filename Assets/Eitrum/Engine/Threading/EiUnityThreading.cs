@@ -18,6 +18,9 @@ namespace Eitrum.Engine.Threading {
 
         static Thread mainThread = Thread.CurrentThread;
 
+        [UnityEngine.SerializeField, Readonly] private float threadTimeMs;
+        [UnityEngine.SerializeField, Readonly] private long threadFrameRate;
+
         #endregion
 
         #region Properties
@@ -37,6 +40,11 @@ namespace Eitrum.Engine.Threading {
         #endregion
 
         #region Unity Methods
+
+        void LateUpdate() {
+            threadTimeMs = ThreadedUpdateSystem.Instance.TotalMsOnActiveThreads;
+            threadFrameRate = ThreadedUpdateSystem.Instance.TotalFrameRateOnActiveThreads;
+        }
 
         void OnDestroy() {
             gameRunning = false;

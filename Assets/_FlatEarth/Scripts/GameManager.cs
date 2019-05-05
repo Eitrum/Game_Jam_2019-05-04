@@ -2,6 +2,7 @@
 using Eitrum.Engine.Extensions;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
 using Eitrum;
 
 public class GameManager : MonoBehaviour {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour {
     private static Coroutine endGameRestartRoutine;
 
     public Transform cameraContainer;
+    public GameObject logo;
 
     #endregion
 
@@ -35,10 +37,22 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         parent = transform.Find("Parent");
         platform = transform.Find("Platform");
+    }
+
+    IEnumerator Start(){
+        logo.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        logo.SetActive(false);
         Restart();
     }
 
     void Update() {
+        for (int i = 0; i < 10; i++) {
+            if (Input.GetKeyDown((KeyCode.Alpha0+i))) {
+                GameSettings.SetMinimumPlayers(i);
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
             Restart();
         if (roundTimer > 0f) {
@@ -51,11 +65,12 @@ public class GameManager : MonoBehaviour {
         }
 
         Vector3 center = Vector3.zero;
-        for (int i = 0; i < players.Count; i++) {
-            center += players[i].transform.localPosition;
+        var tempPlayers = players.Where(x => x.playerId >= 0).ToArray();
+        for (int i = 0; i < tempPlayers.Length; i++) {
+            center += tempPlayers[i].transform.localPosition;
         }
-        if (players.Count > 0)
-            center /= players.Count;
+        if (tempPlayers.Length > 0)
+            center /= tempPlayers.Length;
         center.y = 0f;
 
         cameraContainer.localPosition =Vector3.Lerp(cameraContainer.localPosition, center, Time.deltaTime *3f);
@@ -99,7 +114,6 @@ public class GameManager : MonoBehaviour {
     #region End Round
 
     private static void EndRound(Player winner) {
-        Debug.Log($"Player {(winner?.playerId ?? -1)} won");
         OnRoundEnd?.Invoke(winner);
         Eitrum.Engine.Core.Timer.Once(3f, Restart, ref endGameRestartRoutine);
     }

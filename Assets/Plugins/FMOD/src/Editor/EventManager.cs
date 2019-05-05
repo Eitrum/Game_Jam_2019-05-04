@@ -523,8 +523,8 @@ namespace FMODUnity
                 foreach (var bankRef in eventCache.EditorBanks)
                 {
                     var subDir = Path.GetDirectoryName(bankRef.Path).Replace(bankSourceFolder, "");
-                    string sourcePath = bankSourceFolder + subDir + Path.DirectorySeparatorChar + bankRef.Name + ".bank";
-                    string targetPath = bankTargetFolder + subDir + Path.DirectorySeparatorChar + bankRef.Name + "." + bankTargetExension;
+                    string sourcePath = bankSourceFolder + Path.DirectorySeparatorChar + bankRef.Name + ".bank";
+                    string targetPath = bankTargetFolder + Path.DirectorySeparatorChar + bankRef.Name + "." + bankTargetExension;
 
                     FileInfo sourceInfo = new FileInfo(sourcePath);
                     FileInfo targetInfo = new FileInfo(targetPath);
@@ -541,6 +541,7 @@ namespace FMODUnity
                         {
                             targetInfo.IsReadOnly = false;
                         }
+                        Debug.Log(sourcePath);
                         File.Copy(sourcePath, targetPath, true);
                         targetInfo = new FileInfo(targetPath);
                         targetInfo.IsReadOnly = false;
@@ -613,7 +614,7 @@ namespace FMODUnity
                 EditorUtils.ValidateSource(out isValid, out validateMessage);
                 if (!isValid)
                 {
-                    Debug.LogError("FMOD Studio: " + validateMessage);
+                    //Debug.LogError("FMOD Studio: " + validateMessage);
                 }
                 firstUpdate = false;
                 lastCheckTime = Time.realtimeSinceStartup;

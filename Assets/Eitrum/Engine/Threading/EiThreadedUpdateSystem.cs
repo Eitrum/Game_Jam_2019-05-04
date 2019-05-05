@@ -75,7 +75,7 @@ namespace Eitrum.Engine.Threading
 
 			public ThreadContainer (int fpsLimit = 10000)
 			{
-				Instantiate (TimeSpan.TicksPerSecond / fpsLimit);
+				Instantiate (100000);
 			}
 
 			public void SetNode (EiLLNode<ThreadContainer> node)
@@ -177,11 +177,54 @@ namespace Eitrum.Engine.Threading
 
 		public EiLinkedList<ThreadContainer> threads = new EiLinkedList<ThreadContainer> ();
 
-		#endregion
+        #endregion
 
-		#region Core
+        #region Properties
 
-		public void CloseThreads (bool value = true)
+        public float TotalMsOnThreads {
+            get {
+                float deltaTime = 0f;
+                var iterator = threads.GetIterator();
+                ThreadContainer container;
+                while (iterator.Next(out container)) {
+                    deltaTime += container.DeltaTime;
+                }
+                return deltaTime;
+            }
+        }
+
+        public float TotalMsOnActiveThreads {
+            get {
+                float deltaTime = 0f;
+                var iterator = threads.GetIterator();
+                ThreadContainer container;
+                while (iterator.Next(out container)) {
+                    if(container.IsRunning)
+                     deltaTime += container.DeltaTime;
+                }
+                return deltaTime;
+            }
+        }
+
+        public long TotalFrameRateOnActiveThreads {
+            get {
+                long frameRate = 0;
+                var iterator = threads.GetIterator();
+                ThreadContainer container;
+                while (iterator.Next(out container)) {
+                    if (container.IsRunning)
+                        frameRate += container.UpdatesPerSecond;
+                }
+                return frameRate;
+            }
+        }
+
+
+        #endregion
+
+        #region Core
+
+        public void CloseThreads (bool value = true)
 		{
 			if (value) {
 				var iterator = threads.GetIterator ();

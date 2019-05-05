@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Jupiter
+  m_Name: Player_Pluto
   m_Shader: {fileID: -6465566751694194690, guid: 65d95c5746e874517892824c7626a038,
     type: 3}
   m_ShaderKeywords: 
@@ -25,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_62122E41:
-        m_Texture: {fileID: 2800000, guid: ab218888a286946ca9500b2ea58016fc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 60110af0b2de845c8aa35c3b56f833f9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_702C44FC:

@@ -114,7 +114,6 @@ public class GameManager : MonoBehaviour {
     #region End Round
 
     private static void EndRound(Player winner) {
-        Debug.Log($"Player {(winner?.playerId ?? -1)} won");
         OnRoundEnd?.Invoke(winner);
         Eitrum.Engine.Core.Timer.Once(3f, Restart, ref endGameRestartRoutine);
     }

@@ -138,7 +138,6 @@ public sealed class Player : MonoBehaviour {
                 ForceMode.Impulse);
                 
             float normalized = Mathf.Clamp01((force.magnitude - PlayerMovementSettings.MinBounceForce) / (PlayerMovementSettings.MaxBounceForce - PlayerMovementSettings.MinBounceForce));
-            Debug.Log(normalized);
             planetHit.setParameterByName("impactForce", normalized);
             planetHit.start();
 

@@ -58,6 +58,7 @@ public sealed class Player : MonoBehaviour {
     private void OnDestroy() {
         if (namePlateTransform)
             Destroy(namePlateTransform.gameObject);
+        planetRoll.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     void FixedUpdate() {

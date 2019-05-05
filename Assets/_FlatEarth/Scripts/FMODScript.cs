@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
 public enum PlanetType { 
-    Mars,
-    Jupiter,
-    Uranus,
-    Saturn,
-    Pluto,
-    Earth
+    Mars = 0,
+    Jupiter = 1,
+    Uranus = 2,
+    Saturn = 3,
+    Pluto = 4,
+    Earth = 5
 }
 
 

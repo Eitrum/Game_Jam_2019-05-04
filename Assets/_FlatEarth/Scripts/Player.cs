@@ -98,8 +98,12 @@ public sealed class Player : MonoBehaviour {
         namePlateTransform.LookAt(namePlateTransform.position - cameraTransform.position, cameraTransform.up);
 
 
-        if (playerId >= 0 && Rewired.ReInput.players.GetPlayer(playerId).GetButtonDown("Identify"))
-            Eitrum.Engine.Core.Timer.Animate(0.1f, Animate, ref attack);
+        if (playerId >= 0) {
+            if (Rewired.ReInput.players.GetPlayer(playerId).GetButtonDown("Identify")) {
+                Eitrum.Engine.Core.Timer.Animate(0.1f, Animate, ref attack);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Soundtrack/Planets/planetClick/identifySound");
+            }
+        }
 
         isRolling = rb.velocity.magnitude > 0.1f;
 

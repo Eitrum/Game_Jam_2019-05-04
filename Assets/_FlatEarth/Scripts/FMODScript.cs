@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum PlanetType { 
     Mars,
@@ -23,10 +21,10 @@ public class FMODScript : MonoBehaviour
     public string[] planetEventStrings = { 
         "event:/marsWin",
         "event:/jupiterWin",
-        "event:/uranusWin"
-        //"event:/saturnWin",
-        //"event:/plutoWin",
-        //"event:/earthWin",
+        "event:/uranusWin",
+        "event:/saturnWin",
+        "event:/plutoWin",
+        "event:/earthWin",
     };
     public FMOD.Studio.EventInstance[] planetEvents;
 
@@ -40,9 +38,7 @@ public class FMODScript : MonoBehaviour
 
         for (int iPlanet = 0, nPlanet = planets; iPlanet < nPlanet; ++iPlanet)
         {
-            // TODO REMOVE THIS WHEN WE HAVE SOUNDS FOR ALL PLANETS
-            if (iPlanet < 2)
-                planetEvents[iPlanet] = FMODUnity.RuntimeManager.CreateInstance(planetEventStrings[iPlanet]);
+            planetEvents[iPlanet] = FMODUnity.RuntimeManager.CreateInstance(planetEventStrings[iPlanet]);
         }
 
         GameManager.OnRoundStart += OnRoundStart;
@@ -63,7 +59,6 @@ public class FMODScript : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("events:/countdown");
         }
     }
-
 
     void OnRestart()
     {
@@ -108,6 +103,10 @@ public class FMODScript : MonoBehaviour
             {
                 planetEvents[(int)planet.Value].start();
             }
+        }
+        else
+        {
+            planetEvents[(int)PlanetType.Earth].start();
         }
     }
 }

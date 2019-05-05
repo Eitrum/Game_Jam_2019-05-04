@@ -56,11 +56,11 @@ public class FMODScript : MonoBehaviour
     {
         if (count == 0)
         {
-            // FMODUnity.RuntimeManager.PlayOneShot("events:/go");
+            FMODUnity.RuntimeManager.PlayOneShot("events:/go");
         }
         else
         {
-            // FMODUnity.RuntimeManager.PlayOneShot("events:/countdown");
+            FMODUnity.RuntimeManager.PlayOneShot("events:/countdown");
         }
     }
 

@@ -28,7 +28,7 @@ public class GameText : MonoBehaviour
             SetText(3.ToString()); 
             Show(); 
             logo.SetActive(false);
-            FMODUnity.RuntimeManager.PlayOneShot("events:/countdown");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/countdown");
             };
     }
 

@@ -103,6 +103,16 @@ public sealed class Player : MonoBehaviour {
                 Eitrum.Engine.Core.Timer.Animate(0.1f, Animate, ref attack);
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Soundtrack/Planets/planetClick/identifySound");
             }
+            if (Rewired.ReInput.players.GetPlayer(playerId).GetButtonDown("Pling"))
+            {
+                Eitrum.Engine.Core.Timer.Animate(0.1f, Animate, ref attack);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Soundtrack/Planets/planetClick/boo");
+            }
+            if (Rewired.ReInput.players.GetPlayer(playerId).GetButtonDown("Clap"))
+            {
+                Eitrum.Engine.Core.Timer.Animate(0.1f, Animate, ref attack);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Soundtrack/Planets/planetClick/clap");
+            }
         }
 
         isRolling = rb.velocity.magnitude > 0.1f;
